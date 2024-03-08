@@ -32,4 +32,4 @@ jobs:
           
       - name: Update Lambda function
         run: |
-          aws lambda update-function-code --function-name lambda-test --image-uri 865443971782.dkr.ecr.us-east-2.amazonaws.com/coin-custody:latest
+          aws lambda update-function-code --function-name lambda-test --image-uri 865443971782.dkr.ecr.us-east-2.amazonaws.com/non-catalog-price-optimizer:latest
