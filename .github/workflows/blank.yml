@@ -12,9 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Set permissions on Dockerfile
-        run: chmod +r lib/Dockerfile
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
