@@ -1,0 +1,28 @@
+name: Deploy to AWS Lambda
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to AWS ECR
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build and push Docker image to ECR
+        run: |
+          aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.<your-region>.amazonaws.com
+          docker build -t <your-repo-name> .
+          docker tag <your-repo-name>:latest <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest
+          docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest
+
+      - name: Update Lambda function
+        run: |
+          aws lambda update-function-code --function-name <your-lambda-function-name> --image-uri <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest
