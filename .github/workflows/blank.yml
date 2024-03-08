@@ -26,7 +26,7 @@ jobs:
       - name: Build and push Docker image to ECR
         run: |
           aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 865443971782.dkr.ecr.us-east-2.amazonaws.com/coin-custody
-          docker build -t my-lambda-image-test -f lib/Dockerfile.dockerfile .
+          docker build -t my-lambda-image-test -f ./lib/Dockerfile .
           docker tag my-lambda-image-test:latest 865443971782.dkr.ecr.us-east-2.amazonaws.com/coin-custody:latest
           docker push 865443971782.dkr.ecr.us-east-2.amazonaws.com/coin-custody:latest
           
