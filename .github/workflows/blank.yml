@@ -22,11 +22,11 @@ jobs:
 
       - name: Build and push Docker image to ECR
         run: |
-          aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.<your-region>.amazonaws.com
-          docker build -t <your-repo-name> .
-          docker tag <your-repo-name>:latest <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest
-          docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest
-
+          aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin [039434644707.dkr.ecr.us-east-2.amazonaws.com/coin-custody](http://039434644707.dkr.ecr.us-east-2.amazonaws.com/coin-custody)
+          docker build -t my-lambda-image-test -f coin-custody-image.dockerfile .
+          docker tag my-lambda-image-test:latest 865443971782.dkr.ecr.us-east-2.amazonaws.com/coin-custody:latest
+          docker push 865443971782.dkr.ecr.us-east-2.amazonaws.com/coin-custody:latest
+          
       - name: Update Lambda function
         run: |
-          aws lambda update-function-code --function-name <your-lambda-function-name> --image-uri <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/<your-repo-name>:latest
+          aws lambda update-function-code --function-name lambda-test --image-uri 865443971782.dkr.ecr.us-east-2.amazonaws.com/coin-custody:latest
