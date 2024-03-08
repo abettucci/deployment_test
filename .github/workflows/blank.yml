@@ -19,6 +19,8 @@ jobs:
           registry: ${{ secrets.AWS_REGISTRY }}
           username: ${{ secrets.AWS_ACCESS_KEY_ID }}
           password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: us-east-2
+          mask-password: 'false'
 
       - name: Build and push Docker image to ECR
         run: |
