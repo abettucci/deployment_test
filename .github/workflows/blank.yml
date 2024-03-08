@@ -27,8 +27,8 @@ jobs:
         run: |
           aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 865443971782.dkr.ecr.us-east-2.amazonaws.com/non-catalog-price-optimizer
           docker build -t my-lambda-image-test -f Dockerfile .
-          docker tag my-lambda-image-test:latest 865443971782.dkr.ecr.us-east-2.amazonaws.com/non-catalog-price-optimizer:latest
-          docker push 865443971782.dkr.ecr.us-east-2.amazonaws.com/non-catalog-price-optimizer:latest
+          docker tag my-lambda-image-test:latestt 865443971782.dkr.ecr.us-east-2.amazonaws.com/non-catalog-price-optimizer:latestt
+          docker push 865443971782.dkr.ecr.us-east-2.amazonaws.com/non-catalog-price-optimizer:latestt
           
       - name: Update Lambda function
         run: |
