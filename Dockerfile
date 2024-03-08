@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.8
 
 WORKDIR /app
 
@@ -6,7 +6,10 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-# Copy the Lambda function code
-COPY lambda_function.py .
+# Copy the entire project directory into the image
+COPY . .
+
+# Set PYTHONPATH to include the 'lib' directory
+ENV PYTHONPATH="${PYTHONPATH}:/app/lib"
 
 CMD ["python", "lambda_function.py"]
