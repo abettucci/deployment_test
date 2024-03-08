@@ -15,6 +15,10 @@ jobs:
 
       - name: Login to AWS ECR
         uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registry: ${{ secrets.AWS_REGISTRY }}
+          username: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Build and push Docker image to ECR
         run: |
