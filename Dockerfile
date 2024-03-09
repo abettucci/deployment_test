@@ -4,5 +4,6 @@ COPY requirements.txt ./
 RUN python3.9 -m pip install -r requirements.txt -t .
 
 COPY lambda_function.py ./
+COPY lib1.py ./
 
 CMD ["lambda_function.lambda_handler"]
