@@ -1,8 +1,8 @@
-from lib import lib1
+from lambda_folder.deployment_test.lib1 import sum
 import json
 
 def lambda_handler(event, context):
-    result = lib1.sum(5,4)
+    result = sum(5,4)
 
     return {
         "statusCode" : 200,
