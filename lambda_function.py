@@ -1,4 +1,4 @@
-from lambda_folder.deployment_test.lib1 import sum
+from deployment_test.lib1 import sum
 import json
 
 def lambda_handler(event, context):
