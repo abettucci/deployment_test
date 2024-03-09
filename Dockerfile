@@ -1,15 +1,8 @@
-FROM python:3.9
+FROM public.ecr.aws/lambda/python:3.9
 
-WORKDIR /app
+COPY requirements.txt ./
+RUN python3.9 -m pip install -r requirements.txt -t .
 
-# Copy the requirements file and install dependencies
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+COPY lambda_function.py ./
 
-# Copy the entire project directory into the image
-COPY . .
-
-# Set PYTHONPATH to include the 'lib' directory
-ENV PYTHONPATH="${PYTHONPATH}:/app/lib"
-
-CMD ["python", "lambda_function.py"]
+CMD ["lambda_function.lambda_handler"]
